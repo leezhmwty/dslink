@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dslink-java-jt808.iml" filepath="$PROJECT_DIR$/dslink-java-jt808.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dslink-java-jt808_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dslink-java-jt808_main.iml" group="dslink-java-jt808" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dslink-java-jt808_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dslink-java-jt808_test.iml" group="dslink-java-jt808" />
+    </modules>
+  </component>
+</project>

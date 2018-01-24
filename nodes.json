@@ -1,0 +1,41 @@
+{
+  "server1" : {
+    "$is" : "node",
+    "@port" : 502,
+    "@action" : true,
+    "20000000015" : {
+      "$is" : "node",
+      "@terminal" : true,
+      "auth code" : {
+        "$is" : "node",
+        "$type" : "string",
+        "?value" : "SDUERA324-DJDFF-3E4FDS43"
+      },
+      "other" : {
+        "$is" : "node",
+        "$type" : "string",
+        "?value" : ""
+      },
+      "localtion" : {
+        "$is" : "node",
+        "$type" : "string",
+        "?value" : ""
+      },
+      "status" : {
+        "$is" : "node",
+        "$type" : "string",
+        "?value" : "connect"
+      }
+    },
+    "status" : {
+      "$is" : "node",
+      "$type" : "string",
+      "?value" : "bind"
+    }
+  },
+  "status" : {
+    "$is" : "node",
+    "$type" : "string",
+    "?value" : "ready"
+  }
+}

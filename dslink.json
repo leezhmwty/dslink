@@ -1,0 +1,62 @@
+{
+  "update": {
+    "backupForUpdate": true,
+    "delete": [
+      "lib",
+      "bin"
+    ]
+  },
+  "name": "dslink-jt808",
+  "version": "0.0.1",
+  "description": "An dslink to receive data by 808 protocal",
+  "license": "Apache",
+  "author": {
+    "name": "lizhm",
+    "email": "1529352488@qq.com"
+  },
+  "main": "bin/jt808",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/Jeadren/hj-dslink"
+  },
+  "bugs": {
+    "url": "https://gitee.com/Jeadren/hj-dslink/issues"
+  },
+  "configs": {
+    "name": {
+      "type": "string",
+      "default": "JT808"
+    },
+    "broker": {
+      "type": "url"
+    },
+    "token": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "path",
+      "default": "nodes.json"
+    },
+    "key": {
+      "type": "path",
+      "default": ".key"
+    },
+    "log": {
+      "type": "enum",
+      "default": "info"
+    },
+    "handler_class": {
+      "type": "string",
+      "default": "cn.lizhm.jt808.iot.dslink.Jt808DsLink"
+    },
+    "valuePersistenceEnabled": {
+      "type": "bool",
+      "value": true
+    },
+    "qosPersistenceEnabled": {
+      "type": "bool",
+      "value": false
+    }
+  }
+}
+
