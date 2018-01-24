@@ -2,7 +2,7 @@ package cn.lizhm.jt808.iot.dslink.provider;
 
 import cn.lizhm.jt808.iot.dslink.collections.PathsCache;
 import cn.lizhm.jt808.iot.dslink.model.Jt808Constants;
-import cn.lizhm.jt808.iot.dslink.tcp.server.ControlTCPServer;
+import cn.lizhm.jt808.iot.dslink.tcp.server.ControlNettyServer;
 import org.dsa.iot.dslink.DSLink;
 import org.dsa.iot.dslink.node.Node;
 import org.dsa.iot.dslink.node.NodeBuilder;
@@ -22,7 +22,7 @@ public class Jt808Prodiver {
 
     private ActionProvider actionProvider = new ActionProvider();
     private NodeManager manager;
-    private ControlTCPServer controlTCPServer = ControlTCPServer.getInstance();
+    private ControlNettyServer controlNettyServer = ControlNettyServer.getInstance();
     private PathsCache pathsCache = PathsCache.getInstance();
 
 
@@ -61,7 +61,7 @@ public class Jt808Prodiver {
                 //重启时初始化服务端并重建数据集
                 String serverName = node.getName();
                 int port = node.getAttribute(Jt808Constants.PORT).getNumber().intValue();
-                controlTCPServer.startServer(port, serverName, node.getPath());
+                controlNettyServer.startServer(port, serverName, node.getPath());
 
                 //初始化时在节点上注册action
                 NodeBuilder builder = node.createChild(Jt808Constants.DELETE_TCP_SERVER, false);

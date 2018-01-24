@@ -1,10 +1,10 @@
 package cn.lizhm.jt808.iot.dslink.handlers;
 
 import cn.lizhm.jt808.iot.dslink.collections.ServerPortsCache;
-import cn.lizhm.jt808.iot.dslink.collections.TCPServersCache;
+import cn.lizhm.jt808.iot.dslink.collections.NettyServersCache;
 import cn.lizhm.jt808.iot.dslink.model.Jt808Constants;
 import cn.lizhm.jt808.iot.dslink.provider.ActionProvider;
-import cn.lizhm.jt808.iot.dslink.tcp.server.ControlTCPServer;
+import cn.lizhm.jt808.iot.dslink.tcp.server.ControlNettyServer;
 import org.dsa.iot.dslink.node.Node;
 import org.dsa.iot.dslink.node.NodeBuilder;
 import org.dsa.iot.dslink.node.NodeManager;
@@ -21,10 +21,10 @@ import org.slf4j.LoggerFactory;
  * @author: lizhm
  * @date: 2018/1/17 15:07
  */
-public class SetupTCPServerHandler implements Handler<ActionResult> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SetupTCPServerHandler.class);
+public class SetupNettyServerHandler implements Handler<ActionResult> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SetupNettyServerHandler.class);
 
-    public SetupTCPServerHandler(NodeManager manager) {
+    public SetupNettyServerHandler(NodeManager manager) {
         this.manager = manager;
         this.root = manager.getSuperRoot();
     }
@@ -32,9 +32,9 @@ public class SetupTCPServerHandler implements Handler<ActionResult> {
     private NodeManager manager;
     private Node root;
     private Node serverNode;
-    private ControlTCPServer controlTCPServer = ControlTCPServer.getInstance();
+    private ControlNettyServer controlNettyServer = ControlNettyServer.getInstance();
     private ActionProvider actionProvider = new ActionProvider();
-    private TCPServersCache tcpServersCache = TCPServersCache.getInstance();
+    private NettyServersCache nettyServersCache = NettyServersCache.getInstance();
     private ServerPortsCache serverPortsCache = ServerPortsCache.getInstance();
 
     @Override
@@ -43,10 +43,10 @@ public class SetupTCPServerHandler implements Handler<ActionResult> {
         int port = event.getParameter(Jt808Constants.PORT, ValueType.NUMBER).getNumber().intValue();
         Node status = manager.getSuperRoot().getChild(Jt808Constants.STATUS, false);
 
-        if (name == null || name.equals("")) {
+        if (name == null || "".equals(name)) {
             status.setValue(new Value("name can not be null"));
             return;
-        } else if (tcpServersCache.getServers().containsKey(name)) {
+        } else if (nettyServersCache.getServers().containsKey(name)) {
             status.setValue(new Value("name already exist"));
             return;
         }
@@ -54,7 +54,7 @@ public class SetupTCPServerHandler implements Handler<ActionResult> {
         if (port < Jt808Constants.MIN_PORT || port > Jt808Constants.MAX_PORT) {
             status.setValue(new Value("illegal port"));
             return;
-        } else if (tcpServersCache.getServers().containsValue(port)) {
+        } else if (nettyServersCache.getServers().containsValue(port)) {
             status.setValue(new Value("port already exist"));
             return;
         }
@@ -66,7 +66,7 @@ public class SetupTCPServerHandler implements Handler<ActionResult> {
 
         LOGGER.info("创建tcp server: name={},port={}", name, port);
         // 调用Netty初始化tcp server代码
-        controlTCPServer.startServer(port, name, serverNode.getPath());
+        controlNettyServer.startServer(port, name, serverNode.getPath());
 
         //添加port-name映射关系
         serverPortsCache.put(String.valueOf(port), name);

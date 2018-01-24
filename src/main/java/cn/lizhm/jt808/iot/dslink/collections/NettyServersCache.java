@@ -11,9 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: lizhm
  * @date: 2018/1/19 16:14
  */
-public class TCPServersCache {
+public class NettyServersCache {
 
-    private static TCPServersCache tcpServersCache = null;
+    private static NettyServersCache nettyServersCache = null;
 
     public ConcurrentHashMap<String, TCPServer> getServers() {
         return servers;
@@ -24,17 +24,17 @@ public class TCPServersCache {
      */
     private static ConcurrentHashMap<String, TCPServer> servers = null;
 
-    private TCPServersCache() {
+    private NettyServersCache() {
         servers = new ConcurrentHashMap<>();
     }
 
-    public static TCPServersCache getInstance() {
-        if (tcpServersCache == null) {
-            synchronized (TCPServersCache.class) {
-                tcpServersCache = new TCPServersCache();
+    public static NettyServersCache getInstance() {
+        if (nettyServersCache == null) {
+            synchronized (NettyServersCache.class) {
+                nettyServersCache = new NettyServersCache();
             }
         }
-        return tcpServersCache;
+        return nettyServersCache;
     }
 
     public boolean addServer(String serverId, TCPServer tcpServer) {

@@ -21,22 +21,22 @@ import org.dsa.iot.dslink.node.value.ValueType;
 public class ActionProvider {
 
     public Action getSetupTcpServerAction(NodeManager manager) {
-        Action act = new Action(Permission.READ, new SetupTCPServerHandler(manager));
+        Action act = new Action(Permission.READ, new SetupNettyServerHandler(manager));
         act.addParameter(new Parameter(Jt808Constants.SERVER_NAME, ValueType.STRING));
         act.addParameter(new Parameter(Jt808Constants.PORT, ValueType.NUMBER, new Value(502)));
         return act;
     }
 
     public Action getDeleteTCPServerHandlerAction(NodeManager server) {
-        return new Action(Permission.READ, new DeleteTCPServerHandler(server));
+        return new Action(Permission.READ, new DeleteNettyServerHandler(server));
     }
 
     public Action getStopTCPServerHandlerAction() {
-        return new Action(Permission.READ, new StopTCPServerHandler());
+        return new Action(Permission.READ, new StopNettyServerHandler());
     }
 
     public Action getStartTCPServerHandlerAction() {
-        return new Action(Permission.READ, new StartTCPServerHandler());
+        return new Action(Permission.READ, new StartNettyServerHandler());
     }
 
     public Action getQueryOnlineTerminalHandlerAction() {
