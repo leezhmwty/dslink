@@ -62,6 +62,7 @@ public class Jt808Prodiver {
                 String serverName = node.getName();
                 int port = node.getAttribute(Jt808Constants.PORT).getNumber().intValue();
                 controlNettyServer.startServer(port, serverName, node.getPath());
+                node.getChild(Jt808Constants.STATUS, false).setValue(new Value(Jt808Constants.BIND), false);
 
                 //初始化时在节点上注册action
                 NodeBuilder builder = node.createChild(Jt808Constants.DELETE_TCP_SERVER, false);

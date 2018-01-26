@@ -92,6 +92,9 @@ public class AutoAddTerminalHandler {
      * @param terminalPhone
      */
     public void terminalDisconnect(String terminalPhone) {
+        if (terminalPhone == null) {
+            return;
+        }
         String terminalPath = pathsCache.getPathByTerminalPhone(terminalPhone);
 
         NodeManager manager = jt808DsLink.getLink().getNodeManager();

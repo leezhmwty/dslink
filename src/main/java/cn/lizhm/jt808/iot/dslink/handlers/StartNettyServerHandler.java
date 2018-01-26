@@ -16,8 +16,9 @@ public class StartNettyServerHandler implements Handler<ActionResult> {
 
     @Override
     public void handle(ActionResult event) {
+        Node server = event.getNode().getParent();
         String serverName = event.getNode().getParent().getName();
-        Node status = event.getNode().getChild(serverName, false);
+        Node status = server.getChild(Jt808Constants.STATUS, false);
         TCPServer tcpServer = NettyServersCache.getInstance().getServer(serverName);
         if (tcpServer.isRunning()) {
             status.setValue(new Value(serverName + " already bind"));
